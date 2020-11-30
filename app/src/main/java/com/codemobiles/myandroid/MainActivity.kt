@@ -9,3 +9,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 }
+
+// 80%
+// Build number (about, system)  // click many many time
+// Developer option (about, system -> advance option) developer option -> on
+// Enable usb degub mode ->  debugging -> on , USB debugging -> on
