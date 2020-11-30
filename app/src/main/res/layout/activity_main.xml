@@ -1,90 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/login_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:paddingLeft="18dp"
-    android:paddingRight="18dp"
     tools:context=".MainActivity">
     <!-- command + option + l  จัดฟอร์แมต-->
     <!-- คำสั่ง collapes command +shift + -/+ -->
 
-    <ImageView
-        android:layout_marginTop="32dp"
-        android:src="@color/black"
-        android:layout_width="150dp"
-        android:layout_height="150dp" />
-
-    <EditText
-        android:layout_marginTop="32dp"
-        android:hint="username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:layout_marginTop="8dp"
-        android:hint="password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:text="login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:textAllCaps="false"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:text="forgot password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <LinearLayout
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="28dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingBottom="120dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <View
-            android:background="#FF6F00"
-            android:layout_width="120dp"
-            android:layout_height="1dp" />
+        <ImageView
+            android:layout_marginTop="32dp"
+            android:src="@drawable/mc_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
 
-        <TextView
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:text="or"
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:background="@drawable/login_edittext_background"
+            android:layout_marginTop="32dp"
+            android:hint="username"
+            android:inputType="textEmailAddress"
+            android:textColor="#ffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:background="@drawable/login_edittext_background"
+            android:textColor="#ffff"
+            android:layout_marginTop="8dp"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginButton"
+            android:backgroundTint="@drawable/login_button_background"
+            android:layout_marginTop="8dp"
+            android:text="login"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_marginTop="4dp"
+            android:textAllCaps="false"
+            android:textColor="#CCFFFFFF"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:backgroundTint="@android:color/transparent"
+            android:text="forgot password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="28dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content">
 
-        <View
-            android:background="#FF6F00"
-            android:layout_width="120dp"
-            android:layout_height="1dp" />
+            <View
+                android:background="#B3FF6F00"
+                android:layout_width="120dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:text="or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:background="#B3FF6F00"
+                android:layout_width="120dp"
+                android:layout_height="1dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:background="@drawable/circle_button_background"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/ic_facebook"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:tint="#0D47A1" />
+
+            <ImageView
+                android:background="@drawable/circle_button_background"
+                android:src="@drawable/ic_google"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:tint="#B71C1C" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_marginRight="18dp"
-            android:src="@color/black"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
-
-        <ImageView
-            android:src="@color/teal_200"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
