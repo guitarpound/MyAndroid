@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.codemobiles.myandroid.databinding.ActivityMainBinding
+import com.codemobiles.myandroid.utilities.PREFS_TOKEN
+import com.codemobiles.myandroid.utilities.PREFS_USERNAME
 import com.pixplicity.easyprefs.library.Prefs
 
 class MainActivity : AppCompatActivity() {
@@ -14,14 +16,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Prefs.Builder()
-                .setContext(this)
-                .setMode(ContextWrapper.MODE_PRIVATE)
-                .setPrefsName(packageName)
-                .setUseDefaultSharedPreference(true)
-                .build()
 
-        val token = Prefs.getString("token", "")
+
+        val token = Prefs.getString(PREFS_TOKEN, "")
         if (token != "") {
             val intent = Intent(applicationContext, HomeActivity::class.java)
             startActivity(intent)
@@ -44,8 +41,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
 
-            Prefs.putString("token", "dsfadsfaweoifjllk")
-            Prefs.putString("username", username)
+            Prefs.putString(PREFS_TOKEN, "dsfadsfaweoifjllk")
+            Prefs.putString(PREFS_USERNAME, username)
+        }
+
+        val username = Prefs.getString(PREFS_USERNAME, "")
+        if(username != "") {
+            binding.usernameEditText.setText(username)
         }
     }
 }
