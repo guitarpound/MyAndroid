@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.codemobiles.myandroid.databinding.ActivityMainBinding
 import com.codemobiles.myandroid.databinding.CustomListBinding
 import com.codemobiles.myandroid.databinding.FragmentJsonBinding
@@ -32,22 +33,24 @@ class JSONFragment : Fragment() {
 
         binding = FragmentJsonBinding.inflate(inflater, container, false)
 
-        adapter = CustomAdapter()
+        adapter = CustomAdapter(arrayListOf())
         binding.recyclerview.adapter = adapter
         // important
-//        binding.recyclerview.layoutManager = GridLayoutManager(context, 3)
+        binding.recyclerview.layoutManager = GridLayoutManager(context, 2)
 //        binding.recyclerview.layoutManager = LinearLayoutManager(context)
-        binding.recyclerview.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+//        binding.recyclerview.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
         return binding.root
     }
 
     private fun feedNetwork() {
-        var call = NetworkService.getClient().create(NetworkAPI::class.java).getProducts()
+        val call = NetworkService.getClient().create(NetworkAPI::class.java).getProducts()
         call.enqueue(object : Callback<ProductList>{
             override fun onResponse(call: Call<ProductList>, response: Response<ProductList>) {
                 if(response.isSuccessful) {
-                    Log.d("my_network", response.body().toString())
+                    adapter.products = response.body()!!
+                    //important
+                    adapter.notifyDataSetChanged()
                 }else{
                     Log.e("my_network", "network fail")
                 }
@@ -66,7 +69,7 @@ class JSONFragment : Fragment() {
         fun newInstance() = JSONFragment()
     }
 
-    inner class CustomAdapter: RecyclerView.Adapter<CustomAdapter.MyViewHolder>(){
+    inner class CustomAdapter(var products: ProductList): RecyclerView.Adapter<CustomAdapter.MyViewHolder>(){
 
         inner class MyViewHolder(val customListBinding: CustomListBinding): RecyclerView.ViewHolder(customListBinding.root) {
 
@@ -78,12 +81,23 @@ class JSONFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+            val product = products[position]
             val binding = holder.customListBinding
-            binding.text1.text = "aaaaa"
-            binding.text2.text = "bbbbb"
+            binding.textviewName.text = product.name
+            binding.textviewDetail.text = product.createdAt
+            binding.textviewPrice.text = product.price.toString()
+            binding.textviewStock.text = product.stock.toString()
+
+            Glide
+                .with(holder.itemView.context)
+                .load(NetworkService.getImageURL() + product.image)
+//                .centerCrop()
+//                .placeholder(R.drawable.loading_spinner)
+                .into(binding.imageviewProduct)
+
         }
 
-        override fun getItemCount() = 100
+        override fun getItemCount() = products.size
 
     }
 }
