@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="horizontal"
-    android:layout_height="match_parent">
+    tools:background="#F4511E">
 
     <ImageView
-        android:src="#ff0e0e"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:id="@+id/icon_tab"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:src="@drawable/ic_json"
+        android:contentDescription="Tab Icon"
+        app:tint="#ffff" />
 
     <TextView
-        android:text="xxxxx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/text_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAllCaps="true"
+        android:textColor="#ffff"
+        android:textSize="19sp"
+        tools:text="aaaaaaaaa" />
 
 </LinearLayout>

@@ -10,15 +10,6 @@ import com.codemobiles.myandroid.ChartFragment
 import com.codemobiles.myandroid.JSONFragment
 import com.codemobiles.myandroid.R
 
-private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2
-)
-
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 class SectionsPagerAdapter(
     private val context: Context,
     fm: FragmentManager,
@@ -40,5 +31,17 @@ class SectionsPagerAdapter(
                 JSONFragment.newInstance()
             }
         }
+    }
+
+    companion object{
+        val TAB_TITLES = arrayOf(
+            "JSON",
+            "CHART"
+        )
+
+        val TAB_ICONS = arrayOf(
+            R.drawable.ic_json,
+            R.drawable.ic_chart
+        )
     }
 }

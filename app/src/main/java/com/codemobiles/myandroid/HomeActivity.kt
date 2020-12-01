@@ -11,9 +11,13 @@ import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.codemobiles.myandroid.databinding.ActivityHomeBinding
 import com.codemobiles.myandroid.databinding.ActivityMainBinding
+import com.codemobiles.myandroid.databinding.CustomTabBinding
 import com.codemobiles.myandroid.ui.main.SectionsPagerAdapter
+import com.codemobiles.myandroid.ui.main.TAB_ICONS
+import com.codemobiles.myandroid.ui.main.TAB_TITLES
 import com.codemobiles.myandroid.utilities.HorizontalFlipTransformation
 import com.codemobiles.myandroid.utilities.PREFS_TOKEN
+import com.google.android.material.tabs.TabLayoutMediator
 import com.pixplicity.easyprefs.library.Prefs
 
 class HomeActivity : AppCompatActivity() {
@@ -46,8 +50,19 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         })
-//        val tabs: TabLayout = findViewById(R.id.tabs)
-//        tabs.setupWithViewPager(binding.viewPager)
+
+        TabLayoutMediator(
+            binding.tabs, binding.viewPager
+        ) { tab, position ->
+
+            val binding = CustomTabBinding.inflate(layoutInflater)
+
+            binding.textTab.text = SectionsPagerAdapter.TAB_TITLES[position]
+            binding.iconTab.setImageResource(SectionsPagerAdapter.TAB_ICONS[position])
+
+            tab.customView = binding.root
+        }.attach()
+
     }
 
     private fun setupEventWidget() {
