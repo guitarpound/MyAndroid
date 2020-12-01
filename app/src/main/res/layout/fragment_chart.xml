@@ -13,3 +13,10 @@
         android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>
+
+
+    <!--
+     custom
+     1. create Layout
+     2. binding
+    -->

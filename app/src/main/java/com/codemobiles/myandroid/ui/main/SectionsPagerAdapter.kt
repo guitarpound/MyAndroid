@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.codemobiles.myandroid.ChartFragment
 import com.codemobiles.myandroid.JSONFragment
 import com.codemobiles.myandroid.R
@@ -17,10 +19,16 @@ private val TAB_TITLES = arrayOf(
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
-    FragmentPagerAdapter(fm) {
+class SectionsPagerAdapter(
+    private val context: Context,
+    fm: FragmentManager,
+    lifecycle: Lifecycle
+) :
+    FragmentStateAdapter(fm, lifecycle) {
 
-    override fun getItem(position: Int): Fragment {
+    override fun getItemCount() = TAB_TITLES.size
+
+    override fun createFragment(position: Int): Fragment {
         return when(position) {
             0 -> {
                 JSONFragment.newInstance()
@@ -33,10 +41,4 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
             }
         }
     }
-
-    override fun getPageTitle(position: Int): CharSequence? {
-        return context.resources.getString(TAB_TITLES[position])
-    }
-
-    override fun getCount() =  TAB_TITLES.size
 }
