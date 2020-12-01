@@ -11,7 +11,7 @@ const val BASE_URL = "https://cmpos-demo.herokuapp.com/"
 const val IMAGE_PATH = "images"
 const val PARAMS_ID = "id"
 
-const val API_PRODUCT = "product"
+const val API_PRODUCT = "products"
 const val API_PRODUCT_FORM_NAME = "name"
 const val API_PRODUCT_FORM_PRICE = "price"
 const val API_PRODUCT_FORM_STOCK = "stock"

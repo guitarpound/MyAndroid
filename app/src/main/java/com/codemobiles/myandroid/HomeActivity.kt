@@ -13,8 +13,8 @@ import com.codemobiles.myandroid.databinding.ActivityHomeBinding
 import com.codemobiles.myandroid.databinding.ActivityMainBinding
 import com.codemobiles.myandroid.databinding.CustomTabBinding
 import com.codemobiles.myandroid.ui.main.SectionsPagerAdapter
-import com.codemobiles.myandroid.ui.main.TAB_ICONS
-import com.codemobiles.myandroid.ui.main.TAB_TITLES
+//import com.codemobiles.myandroid.ui.main.TAB_ICONS
+//import com.codemobiles.myandroid.ui.main.TAB_TITLES
 import com.codemobiles.myandroid.utilities.HorizontalFlipTransformation
 import com.codemobiles.myandroid.utilities.PREFS_TOKEN
 import com.google.android.material.tabs.TabLayoutMediator
