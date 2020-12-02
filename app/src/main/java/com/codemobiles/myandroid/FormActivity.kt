@@ -4,7 +4,9 @@ import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.codemobiles.myandroid.databinding.ActivityFormBinding
@@ -20,6 +22,7 @@ import java.io.File
 class FormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFormBinding
+    private var permissionGranted = false
     private var easyImage: EasyImage? = null
     private var file: File? = null
 
@@ -38,8 +41,30 @@ class FormActivity : AppCompatActivity() {
             .allowMultiple(true)
             .build()
 
+        setupEventWidget()
+
         checkRuntimePermission()
         setupToolbar()
+    }
+
+
+
+    private fun setupEventWidget() {
+        binding.camera.setOnClickListener() {
+            if (permissionGranted) {
+                easyImage?.openCameraForImage(this)
+            }
+        }
+
+        binding.gallery.setOnClickListener() {
+            if (permissionGranted) {
+                easyImage?.openGallery(this)
+            }
+        }
+
+        binding.productSubmit.setOnClickListener() {
+            //todo
+        }
     }
 
     private fun setupToolbar() {
@@ -70,7 +95,8 @@ class FormActivity : AppCompatActivity() {
 
                         if (report.areAllPermissionsGranted()) {
                             // open camera and Gallery
-                            easyImage?.openGallery(this@FormActivity)
+                            //easyImage?.openGallery(this@FormActivity)
+                            permissionGranted = true
                         } else {
                             finish()
                         }
@@ -125,7 +151,11 @@ class FormActivity : AppCompatActivity() {
             ArrayList(listOf(*returnedPhotos))
         file = imagesFiles[0].file
 
-        Glide.with(applicationContext).load(file).into(binding.preview)
+        Glide.with(applicationContext).load(file).into(binding.productImageview)
+        binding.productImageview.visibility = View.VISIBLE
+
+        binding.photoLayout.gravity = Gravity.END
+        binding.photoLayout.setPadding(0, 12, 12, 0)
     }
 }
 

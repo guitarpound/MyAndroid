@@ -13,9 +13,118 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <ImageView
-        android:id="@+id/preview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp">
+
+        <EditText
+            android:id="@+id/product_edittext_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_edittext_background"
+            android:hint="name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:nextFocusDown="@+id/product_edittext_price" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/product_edittext_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_edittext_background"
+                android:hint="price"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:nextFocusDown="@+id/product_edittext_stock"
+                tools:text="1234567890123456789§" />
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="0dp" />
+
+            <EditText
+                android:id="@+id/product_edittext_stock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_edittext_background"
+                android:hint="stock"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLength="5"
+                android:maxLines="1"
+                tools:text="1234567" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <ImageView
+                android:id="@+id/product_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                tools:src="@drawable/mc_logo" />
+
+            <LinearLayout
+                android:id="@+id/photo_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="#B3F1F1F1"
+                    android:drawableStart="@android:drawable/ic_menu_camera"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="camera"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="12dp"
+                    android:background="#B3F1F1F1"
+                    android:drawableStart="@android:drawable/ic_menu_gallery"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="gallery"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/product_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:background="@color/purple_700"
+            android:text="submit"
+            android:textColor="#ffff" />
+
+    </LinearLayout>
 
 </LinearLayout>
