@@ -69,7 +69,8 @@ class HomeActivity : AppCompatActivity() {
         binding.fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
-            logout()
+            val intent = Intent(applicationContext, FormActivity::class.java)
+            startActivity(intent)
         }
     }
 
