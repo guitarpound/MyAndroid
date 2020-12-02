@@ -7,7 +7,8 @@ const val PREFS_TOKEN = "token"
 
 const val INTENT_PRODUCT = "product"
 
-const val BASE_URL = "https://cmpos-demo.herokuapp.com/"
+const val BASE_URL = "http://192.168.0.104:1150/"
+//const val BASE_URL = "https://cmpos-demo.herokuapp.com/"
 const val IMAGE_PATH = "images"
 const val PARAMS_ID = "id"
 
