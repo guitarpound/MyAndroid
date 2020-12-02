@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAndroid">
-        <activity android:name=".FormActivity" />
+        <activity
+            android:name=".FormActivity"
+            android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"

@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".FormActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="#F57F17"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <ImageView
         android:id="@+id/preview"

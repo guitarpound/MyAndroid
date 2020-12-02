@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.codemobiles.myandroid.databinding.ActivityFormBinding
@@ -38,9 +39,27 @@ class FormActivity : AppCompatActivity() {
             .build()
 
         checkRuntimePermission()
+        setupToolbar()
     }
 
-        private fun checkRuntimePermission() {
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        binding.toolbar.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home){
+            finish()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun checkRuntimePermission() {
             Dexter.withContext(this)
                 .withPermissions(
                     Manifest.permission.CAMERA,
