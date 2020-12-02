@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +15,11 @@ import com.bumptech.glide.Glide
 import com.codemobiles.myandroid.databinding.ActivityMainBinding
 import com.codemobiles.myandroid.databinding.CustomListBinding
 import com.codemobiles.myandroid.databinding.FragmentJsonBinding
+import com.codemobiles.myandroid.models.Product
 import com.codemobiles.myandroid.models.ProductList
 import com.codemobiles.myandroid.network.NetworkAPI
 import com.codemobiles.myandroid.network.NetworkService
+import com.codemobiles.myandroid.utilities.GridSpacingItemDecoration
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +42,11 @@ class JSONFragment : Fragment() {
         binding.recyclerview.layoutManager = GridLayoutManager(context, 2)
 //        binding.recyclerview.layoutManager = LinearLayoutManager(context)
 //        binding.recyclerview.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.recyclerview.addItemDecoration(GridSpacingItemDecoration(2,14,true))
+
+        binding.swipeRefresh.setOnRefreshListener {
+            feedNetwork()
+        }
 
         return binding.root
     }
@@ -54,10 +62,13 @@ class JSONFragment : Fragment() {
                 }else{
                     Log.e("my_network", "network fail")
                 }
+
+                binding.swipeRefresh.isRefreshing = false
             }
 
             override fun onFailure(call: Call<ProductList>, t: Throwable) {
                 Log.e("my_network", t.message.toString())
+                binding.swipeRefresh.isRefreshing = false
             }
 
 
@@ -72,7 +83,15 @@ class JSONFragment : Fragment() {
     inner class CustomAdapter(var products: ProductList): RecyclerView.Adapter<CustomAdapter.MyViewHolder>(){
 
         inner class MyViewHolder(val customListBinding: CustomListBinding): RecyclerView.ViewHolder(customListBinding.root) {
-
+            init {
+                customListBinding.root.setOnClickListener { view ->
+                    val product = view.getTag(customListBinding.root.id)
+                    // smart cast
+                    if(product is Product) {
+                        Toast.makeText(context, product.name + product.price, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -94,6 +113,8 @@ class JSONFragment : Fragment() {
 //                .centerCrop()
 //                .placeholder(R.drawable.loading_spinner)
                 .into(binding.imageviewProduct)
+
+            binding.root.setTag(binding.root.id, product)
 
         }
 
